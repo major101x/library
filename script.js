@@ -1,3 +1,4 @@
+const booksContainer = document.querySelector(".books-container");
 const library = [
   {
     title: "father",
@@ -38,3 +39,24 @@ function addBookToLibrary(title, author, numberOfPages, hasRead) {
   console.log(library);
   return library;
 }
+
+function displayBooks() {
+  library.forEach((book) => {
+    const newBook = document.createElement("div");
+    booksContainer.appendChild(newBook);
+    const newBookTitle = document.createElement("p");
+    newBookTitle.textContent = book.title;
+    newBook.appendChild(newBookTitle);
+    const newBookAuthor = document.createElement("p");
+    newBookAuthor.textContent = book.author;
+    newBook.appendChild(newBookAuthor);
+    const newBookNumberOfPages = document.createElement("p");
+    newBookNumberOfPages.textContent = book.numberOfPages;
+    newBook.appendChild(newBookNumberOfPages);
+    const newBookHasRead = document.createElement("p");
+    newBookHasRead.textContent = book.hasRead;
+    newBook.appendChild(newBookHasRead);
+  });
+}
+
+displayBooks();
