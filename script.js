@@ -1,4 +1,7 @@
 const booksContainer = document.querySelector(".books-container");
+const addBookButton = document.querySelector(".add-book-btn");
+const cancelButton = document.querySelector(".cancel-btn");
+const dialog = document.querySelector("dialog");
 const library = [
   {
     title: "father",
@@ -36,9 +39,16 @@ function Book(title, author, numberOfPages, hasRead) {
 function addBookToLibrary(title, author, numberOfPages, hasRead) {
   const book = new Book(title, author, numberOfPages, hasRead);
   library.push(book);
-  console.log(library);
-  return library;
+  displayBooks();
 }
+
+addBookButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+cancelButton.addEventListener("click", () => {
+  dialog.close();
+})
 
 function displayBooks() {
   library.forEach((book) => {
