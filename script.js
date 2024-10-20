@@ -1,7 +1,13 @@
 const booksContainer = document.querySelector(".books-container");
 const addBookButton = document.querySelector(".add-book-btn");
+const confirmButton = document.querySelector(".confirm-btn");
 const cancelButton = document.querySelector(".cancel-btn");
+const titleInput = document.querySelector("#book-title");
+const authorInput = document.querySelector("#book-author");
+const numberOfPagesInput = document.querySelector("#number-of-pages");
+const hasReadSelect = document.querySelector("#has-read");
 const dialog = document.querySelector("dialog");
+
 const library = [
   {
     title: "father",
@@ -46,11 +52,24 @@ addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
 
+confirmButton.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const bookTitle = titleInput.value;
+  const bookAuthor = authorInput.value;
+  const bookNumberOfPages = numberOfPagesInput.value;
+  const bookHasRead = hasReadSelect.value;
+
+  dialog.close();
+  addBookToLibrary(bookTitle, bookAuthor, bookNumberOfPages, bookHasRead);
+})
+
 cancelButton.addEventListener("click", () => {
   dialog.close();
 })
 
 function displayBooks() {
+  booksContainer.replaceChildren();
   library.forEach((book) => {
     const newBook = document.createElement("div");
     booksContainer.appendChild(newBook);
