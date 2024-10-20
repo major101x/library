@@ -58,7 +58,7 @@ addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
 
-confirmButton.addEventListener("click", (e) => {
+confirmButton.addEventListener("click", () => {
   if (!form.checkValidity()) {
     return;
   } else {
