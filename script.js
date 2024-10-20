@@ -62,29 +62,48 @@ confirmButton.addEventListener("click", (e) => {
 
   dialog.close();
   addBookToLibrary(bookTitle, bookAuthor, bookNumberOfPages, bookHasRead);
-})
+});
 
 cancelButton.addEventListener("click", () => {
   dialog.close();
-})
+});
 
 function displayBooks() {
   booksContainer.replaceChildren();
   library.forEach((book) => {
     const newBook = document.createElement("div");
     booksContainer.appendChild(newBook);
+
     const newBookTitle = document.createElement("p");
     newBookTitle.textContent = book.title;
     newBook.appendChild(newBookTitle);
+
     const newBookAuthor = document.createElement("p");
     newBookAuthor.textContent = book.author;
     newBook.appendChild(newBookAuthor);
+
     const newBookNumberOfPages = document.createElement("p");
     newBookNumberOfPages.textContent = book.numberOfPages;
     newBook.appendChild(newBookNumberOfPages);
-    const newBookHasRead = document.createElement("p");
-    newBookHasRead.textContent = book.hasRead;
-    newBook.appendChild(newBookHasRead);
+
+    const actionsContainer = document.createElement("div");
+    newBook.appendChild(actionsContainer);
+
+    const changeHasReadBtn = document.createElement("button");
+    actionsContainer.appendChild(changeHasReadBtn);
+
+    const changeHasReadBtnText = document.createElement("span");
+    changeHasReadBtnText.textContent = book.hasRead;
+    changeHasReadBtn.appendChild(changeHasReadBtnText);
+
+    const hasReadIcon = document.createElement("span");
+    hasReadIcon.classList.add("material-symbols-outlined");
+    hasReadIcon.textContent = "cached";
+    changeHasReadBtn.appendChild(hasReadIcon);
+
+    const removeBookBtn = document.createElement("button");
+    removeBookBtn.textContent = "Remove book";
+    actionsContainer.appendChild(removeBookBtn);
   });
 }
 
