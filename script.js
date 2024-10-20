@@ -54,6 +54,15 @@ function removeBookFromLibrary(index) {
   displayBooks();
 }
 
+Book.prototype.changeHasReadStatus = function (book) {
+  if (book.hasRead === "Want to read") {
+    book.hasRead = "Read";
+  } else {
+    book.hasRead = "Want to read";
+  }
+  displayBooks();
+};
+
 addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
@@ -108,6 +117,7 @@ function displayBooks() {
     hasReadIcon.classList.add("material-symbols-outlined");
     hasReadIcon.textContent = "cached";
     changeHasReadBtn.appendChild(hasReadIcon);
+    changeHasReadBtn.addEventListener("click", () => book.changeHasReadStatus(book));
 
     const removeBookBtn = document.createElement("button");
     removeBookBtn.textContent = "Remove book";
