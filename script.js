@@ -7,6 +7,7 @@ const authorInput = document.querySelector("#book-author");
 const numberOfPagesInput = document.querySelector("#number-of-pages");
 const hasReadSelect = document.querySelector("#has-read");
 const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
 
 const library = [
   {
@@ -48,20 +49,27 @@ function addBookToLibrary(title, author, numberOfPages, hasRead) {
   displayBooks();
 }
 
+function removeBookFromLibrary(index) {
+  library.splice(index, 1);
+  displayBooks();
+}
+
 addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
 
 confirmButton.addEventListener("click", (e) => {
-  e.preventDefault();
+  if (!form.checkValidity()) {
+    return;
+  } else {
+    const bookTitle = titleInput.value;
+    const bookAuthor = authorInput.value;
+    const bookNumberOfPages = numberOfPagesInput.value;
+    const bookHasRead = hasReadSelect.value;
 
-  const bookTitle = titleInput.value;
-  const bookAuthor = authorInput.value;
-  const bookNumberOfPages = numberOfPagesInput.value;
-  const bookHasRead = hasReadSelect.value;
-
-  dialog.close();
-  addBookToLibrary(bookTitle, bookAuthor, bookNumberOfPages, bookHasRead);
+    dialog.close();
+    addBookToLibrary(bookTitle, bookAuthor, bookNumberOfPages, bookHasRead);
+  }
 });
 
 cancelButton.addEventListener("click", () => {
@@ -70,7 +78,7 @@ cancelButton.addEventListener("click", () => {
 
 function displayBooks() {
   booksContainer.replaceChildren();
-  library.forEach((book) => {
+  library.forEach((book, index) => {
     const newBook = document.createElement("div");
     booksContainer.appendChild(newBook);
 
@@ -104,6 +112,7 @@ function displayBooks() {
     const removeBookBtn = document.createElement("button");
     removeBookBtn.textContent = "Remove book";
     actionsContainer.appendChild(removeBookBtn);
+    removeBookBtn.addEventListener("click", () => removeBookFromLibrary(index));
   });
 }
 
