@@ -78,6 +78,11 @@ confirmButton.addEventListener("click", () => {
 
     dialog.close();
     addBookToLibrary(bookTitle, bookAuthor, bookNumberOfPages, bookHasRead);
+
+    titleInput.value = "";
+    authorInput.value = "";
+    numberOfPagesInput.value = "";
+    hasReadSelect.value = "";
   }
 });
 
@@ -113,11 +118,13 @@ function displayBooks() {
 
     const changeHasReadBtn = document.createElement("button");
     changeHasReadBtn.classList.add("has-read-btn");
-    changeHasReadBtn.classList.toggle(book.hasRead === "Want to read" ? "red-btn" : "green-btn");
+    changeHasReadBtn.classList.toggle(
+      book.hasRead === "Want to read" ? "red-btn" : "green-btn"
+    );
     actionsContainer.appendChild(changeHasReadBtn);
     changeHasReadBtn.addEventListener("click", () => {
-      book.changeHasReadStatus(book)}
-    );
+      book.changeHasReadStatus(book);
+    });
 
     const changeHasReadBtnText = document.createElement("span");
     changeHasReadBtnText.textContent = book.hasRead;
