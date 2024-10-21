@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Preconnect links -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- External Fonts and Icons -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700;1,900&display=swap"
       rel="stylesheet"
@@ -14,10 +21,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
     />
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
+      <!-- Header Section -->
       <header class="navigation">
         <div class="logo">Library</div>
         <div class="profile-actions">
@@ -25,15 +32,21 @@
             <button>Login</button>
             <button>Sign Up</button>
           </div>
-            <span class="material-symbols-outlined profile-picture"> account_circle </span>
+          <span class="material-symbols-outlined profile-picture">
+            account_circle
+          </span>
         </div>
       </header>
+
+      <!-- Main section -->
       <main>
         <div class="books-container"></div>
         <div class="btn-container">
-        <button class="add-book-btn">Add New Book</button>
-      </div>
+          <button class="add-book-btn">Add New Book</button>
+        </div>
       </main>
+
+      <!-- Dialog to add new book -->
       <dialog>
         <form method="dialog">
           <h1>Add New Book</h1>
@@ -66,6 +79,7 @@
       </dialog>
     </div>
 
+    <!-- External JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>

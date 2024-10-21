@@ -1,3 +1,6 @@
+// Array of objects containing book instances
+const library = [];
+
 const booksContainer = document.querySelector(".books-container");
 const addBookButton = document.querySelector(".add-book-btn");
 const confirmButton = document.querySelector(".confirm-btn");
@@ -9,8 +12,7 @@ const hasReadSelect = document.querySelector("#has-read");
 const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
 
-const library = [];
-
+// Book constuctor
 function Book(title, author, numberOfPages, hasRead) {
   this.title = title;
   this.author = author;
@@ -18,25 +20,9 @@ function Book(title, author, numberOfPages, hasRead) {
   this.hasRead = hasRead;
 }
 
-function addBookToLibrary(title, author, numberOfPages, hasRead) {
-  const book = new Book(title, author, numberOfPages, hasRead);
-  library.push(book);
-  displayBooks();
-}
-
-function removeBookFromLibrary(index) {
-  library.splice(index, 1);
-  displayBooks();
-}
-
-function clearInputs() {
-  titleInput.value = "";
-  authorInput.value = "";
-  numberOfPagesInput.value = "";
-  hasReadSelect.value = "";
-}
-
+// Book method to change read state and re-render books
 Book.prototype.changeHasReadStatus = function (book) {
+  // Switches read state
   if (book.hasRead === "Not read") {
     book.hasRead = "Read";
   } else {
@@ -45,11 +31,35 @@ Book.prototype.changeHasReadStatus = function (book) {
   displayBooks();
 };
 
+// Adds book to library
+function addBookToLibrary(title, author, numberOfPages, hasRead) {
+  const book = new Book(title, author, numberOfPages, hasRead);
+  library.push(book);
+  displayBooks();
+}
+
+// Removes book from index received from the displayBooks() function
+function removeBookFromLibrary(index) {
+  library.splice(index, 1);
+  displayBooks();
+}
+
+// Clears Inputs
+function clearInputs() {
+  titleInput.value = "";
+  authorInput.value = "";
+  numberOfPagesInput.value = "";
+  hasReadSelect.value = "";
+}
+
+// Shows modal on click
 addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
 
+// Adds book to library and clears inputs if form is valid
 confirmButton.addEventListener("click", () => {
+  // Checks validity of form before proceeding
   if (!form.checkValidity()) {
     return;
   } else {
@@ -64,39 +74,48 @@ confirmButton.addEventListener("click", () => {
   }
 });
 
+// Clears inputs and closes dialog
 cancelButton.addEventListener("click", () => {
   clearInputs();
   dialog.close();
 });
 
+// Displays books
 function displayBooks() {
   booksContainer.replaceChildren();
   library.forEach((book, index) => {
+    // Creates book
     const newBook = document.createElement("div");
     newBook.classList.add("book");
     booksContainer.appendChild(newBook);
 
+    // Creates book title text
     const newBookTitle = document.createElement("p");
     newBookTitle.textContent = book.title;
     newBookTitle.classList.add("book-title");
     newBook.appendChild(newBookTitle);
 
+    // Creates book author text
     const newBookAuthor = document.createElement("p");
     newBookAuthor.textContent = book.author;
     newBookAuthor.classList.add("book-author");
     newBook.appendChild(newBookAuthor);
 
+    // Creates number of pages text
     const newBookNumberOfPages = document.createElement("p");
     newBookNumberOfPages.textContent = book.numberOfPages + " pages";
     newBookNumberOfPages.classList.add("book-number-of-pages");
     newBook.appendChild(newBookNumberOfPages);
 
+    // Creates container for buttons inside book
     const actionsContainer = document.createElement("div");
     actionsContainer.classList.add("book-actions");
     newBook.appendChild(actionsContainer);
 
+    // Creates Button to switch read state
     const changeHasReadBtn = document.createElement("button");
     changeHasReadBtn.classList.add("has-read-btn");
+    // Toggles button background color if book exists
     changeHasReadBtn.classList.toggle(
       book.hasRead === "Not read" ? "red-btn" : "green-btn"
     );
@@ -105,17 +124,20 @@ function displayBooks() {
       book.changeHasReadStatus(book);
     });
 
+    // Creates text inside has read button
     const changeHasReadBtnText = document.createElement("span");
     changeHasReadBtnText.textContent = book.hasRead;
     actionsContainer.classList.add("btn-text");
     changeHasReadBtn.appendChild(changeHasReadBtnText);
 
+    // Creates icon inside has read button
     const hasReadIcon = document.createElement("span");
     hasReadIcon.classList.add("material-symbols-outlined");
     hasReadIcon.classList.add("btn-icon");
     hasReadIcon.textContent = "cached";
     changeHasReadBtn.appendChild(hasReadIcon);
 
+    // Creates button to remove book
     const removeBookBtn = document.createElement("button");
     removeBookBtn.textContent = "Remove book";
     removeBookBtn.classList.add("remove-book-btn");
@@ -124,6 +146,7 @@ function displayBooks() {
   });
 }
 
+// Add placeholder books to DOM
 addBookToLibrary("Flowers For Algernon", "Daniel Keyes", 122, "Read");
 addBookToLibrary(
   "All Tomorrows: The Myriad Species and Mixed Fortunes of Man",
@@ -144,4 +167,5 @@ addBookToLibrary(
   "Not read"
 );
 
+// Displays books on load
 displayBooks();

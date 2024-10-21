@@ -1,14 +1,27 @@
+/* RESET */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* VARIABLES */
+:root {
+  --primary: #1b1b1b;
+  --white: #ffffff;
+  --red-background: rgba(255, 0, 0, 0.5);
+  --red-text: rgb(75, 0, 0);
+  --green-background: rgba(0, 128, 0, 0.5);
+  --green-text: rgb(0, 75, 0);
+}
+
+/* GLOBAL STYLES */
 body,
 html {
   height: 100%;
 }
 
+/* CONTENT CONTAINER */
 .container {
   height: 100%;
   display: flex;
@@ -16,6 +29,7 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+/* HEADER SECTION */
 header {
   flex-basis: auto;
   background-color: #1b1b1b;
@@ -69,12 +83,14 @@ header button:hover {
   opacity: 0.8;
 }
 
+/* MAIN SECTION */
 main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
+/* BOOKS SECTION INSIDE MAIN */
 .books-container {
   display: grid;
   padding: 20px;
@@ -163,6 +179,7 @@ main {
   transform: rotate(360deg);
 }
 
+/* ADD BOOK BUTTON CONTAINER */
 .btn-container {
   flex-grow: 1;
   display: flex;
@@ -191,6 +208,7 @@ button.add-book-btn:hover {
   opacity: 0.8;
 }
 
+/* DIALOG */
 dialog {
   margin: auto;
   border: none;
@@ -207,6 +225,7 @@ dialog h1 {
   text-align: center;
 }
 
+/* FORM INSIDE DIALOG */
 dialog form {
   display: flex;
   flex-direction: column;
