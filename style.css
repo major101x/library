@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  flex-basis: auto;
+  background-color: #1b1b1b;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 24px;
+  color: white;
+}
+
+header .logo {
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 4px;
+}
+
+header .profile-actions {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+header .profile-picture {
+  font-size: 3.5rem;
+  background-color: white;
+  color: #1b1b1b;
+  border-radius: 50%;
+}
+
+header .auth-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+header button {
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  font-family: inherit;
+  padding: 4px 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+header button:hover {
+  opacity: 0.8;
+}
+
+main {
+  flex-grow: 1;
+}
