@@ -30,10 +30,10 @@ function removeBookFromLibrary(index) {
 }
 
 Book.prototype.changeHasReadStatus = function (book) {
-  if (book.hasRead === "Want to read") {
+  if (book.hasRead === "Not read") {
     book.hasRead = "Read";
   } else {
-    book.hasRead = "Want to read";
+    book.hasRead = "Not read";
   }
   displayBooks();
 };
@@ -94,7 +94,7 @@ function displayBooks() {
     const changeHasReadBtn = document.createElement("button");
     changeHasReadBtn.classList.add("has-read-btn");
     changeHasReadBtn.classList.toggle(
-      book.hasRead === "Want to read" ? "red-btn" : "green-btn"
+      book.hasRead === "Not read" ? "red-btn" : "green-btn"
     );
     actionsContainer.appendChild(changeHasReadBtn);
     changeHasReadBtn.addEventListener("click", () => {
@@ -131,13 +131,13 @@ addBookToLibrary(
   "Sapiens: A Brief History of Humankind",
   "Yuval Noah Harari",
   512,
-  "Want to read"
+  "Not read"
 );
 addBookToLibrary(
   "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
   "James Clear",
   319,
-  "Want to read"
+  "Not read"
 );
 
 displayBooks();
