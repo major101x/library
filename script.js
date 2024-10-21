@@ -9,32 +9,7 @@ const hasReadSelect = document.querySelector("#has-read");
 const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
 
-const library = [
-  {
-    title: "father",
-    author: "nigga",
-    numberOfPages: 122,
-    hasRead: "Want to read",
-  },
-  {
-    title: "mother",
-    author: "nigga",
-    numberOfPages: 122,
-    hasRead: "Want to read",
-  },
-  {
-    title: "sister",
-    author: "nigga",
-    numberOfPages: 122,
-    hasRead: "Want to read",
-  },
-  {
-    title: "brother",
-    author: "nigga",
-    numberOfPages: 122,
-    hasRead: "Want to read",
-  },
-];
+const library = [];
 
 function Book(title, author, numberOfPages, hasRead) {
   this.title = title;
@@ -144,5 +119,25 @@ function displayBooks() {
     removeBookBtn.addEventListener("click", () => removeBookFromLibrary(index));
   });
 }
+
+addBookToLibrary("Flowers For Algernon", "Daniel Keyes", 122, "Read");
+addBookToLibrary(
+  "All Tomorrows: The Myriad Species and Mixed Fortunes of Man",
+  "Nemo Ramjet",
+  111,
+  "Read"
+);
+addBookToLibrary(
+  "Sapiens: A Brief History of Humankind",
+  "Yuval Noah Harari",
+  512,
+  "Want to read"
+);
+addBookToLibrary(
+  "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+  "James Clear",
+  319,
+  "Want to read"
+);
 
 displayBooks();
