@@ -29,6 +29,13 @@ function removeBookFromLibrary(index) {
   displayBooks();
 }
 
+function clearInputs() {
+  titleInput.value = "";
+  authorInput.value = "";
+  numberOfPagesInput.value = "";
+  hasReadSelect.value = "";
+}
+
 Book.prototype.changeHasReadStatus = function (book) {
   if (book.hasRead === "Not read") {
     book.hasRead = "Read";
@@ -53,15 +60,12 @@ confirmButton.addEventListener("click", () => {
 
     dialog.close();
     addBookToLibrary(bookTitle, bookAuthor, bookNumberOfPages, bookHasRead);
-
-    titleInput.value = "";
-    authorInput.value = "";
-    numberOfPagesInput.value = "";
-    hasReadSelect.value = "";
+    clearInputs();
   }
 });
 
 cancelButton.addEventListener("click", () => {
+  clearInputs();
   dialog.close();
 });
 
