@@ -89,38 +89,49 @@ function displayBooks() {
   booksContainer.replaceChildren();
   library.forEach((book, index) => {
     const newBook = document.createElement("div");
+    newBook.classList.add("book");
     booksContainer.appendChild(newBook);
 
     const newBookTitle = document.createElement("p");
     newBookTitle.textContent = book.title;
+    newBookTitle.classList.add("book-title");
     newBook.appendChild(newBookTitle);
 
     const newBookAuthor = document.createElement("p");
     newBookAuthor.textContent = book.author;
+    newBookAuthor.classList.add("book-author");
     newBook.appendChild(newBookAuthor);
 
     const newBookNumberOfPages = document.createElement("p");
     newBookNumberOfPages.textContent = book.numberOfPages;
+    newBookNumberOfPages.classList.add("book-number-of-pages");
     newBook.appendChild(newBookNumberOfPages);
 
     const actionsContainer = document.createElement("div");
+    actionsContainer.classList.add("actions");
     newBook.appendChild(actionsContainer);
 
     const changeHasReadBtn = document.createElement("button");
+    changeHasReadBtn.classList.add("has-read-btn");
     actionsContainer.appendChild(changeHasReadBtn);
+    changeHasReadBtn.addEventListener("click", () =>
+      book.changeHasReadStatus(book)
+    );
 
     const changeHasReadBtnText = document.createElement("span");
     changeHasReadBtnText.textContent = book.hasRead;
+    actionsContainer.classList.add("btn-text");
     changeHasReadBtn.appendChild(changeHasReadBtnText);
 
     const hasReadIcon = document.createElement("span");
     hasReadIcon.classList.add("material-symbols-outlined");
+    hasReadIcon.classList.add("btn-icon");
     hasReadIcon.textContent = "cached";
     changeHasReadBtn.appendChild(hasReadIcon);
-    changeHasReadBtn.addEventListener("click", () => book.changeHasReadStatus(book));
 
     const removeBookBtn = document.createElement("button");
     removeBookBtn.textContent = "Remove book";
+    removeBookBtn.classList.add("remove-book-btn");
     actionsContainer.appendChild(removeBookBtn);
     removeBookBtn.addEventListener("click", () => removeBookFromLibrary(index));
   });
