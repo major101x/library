@@ -103,12 +103,12 @@ function displayBooks() {
     newBook.appendChild(newBookAuthor);
 
     const newBookNumberOfPages = document.createElement("p");
-    newBookNumberOfPages.textContent = book.numberOfPages;
+    newBookNumberOfPages.textContent = book.numberOfPages + " pages";
     newBookNumberOfPages.classList.add("book-number-of-pages");
     newBook.appendChild(newBookNumberOfPages);
 
     const actionsContainer = document.createElement("div");
-    actionsContainer.classList.add("actions");
+    actionsContainer.classList.add("book-actions");
     newBook.appendChild(actionsContainer);
 
     const changeHasReadBtn = document.createElement("button");
