@@ -186,6 +186,7 @@ main {
   justify-content: center;
   align-items: flex-start;
   flex-basis: auto;
+  margin-bottom: 20px;
 }
 
 button.add-book-btn {
@@ -296,4 +297,14 @@ dialog.remove-dialog {
 
 .remove-dialog .remove-actions {
   margin-top: 20px;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
+  padding: 16px;
+  color: var(--white);
 }
