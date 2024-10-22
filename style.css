@@ -258,14 +258,14 @@ form .form-row {
   border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-form .actions {
+.actions {
   margin-top: 12px;
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
 
-form .actions button {
+.actions button {
   border: none;
   outline: none;
   background-color: #1b1b1b;
@@ -276,11 +276,24 @@ form .actions button {
   font-family: inherit;
 }
 
-form .actions button:hover {
+.actions button:hover {
   opacity: 0.8;
 }
 
-form .actions .cancel-btn {
+.actions .cancel-btn {
   background-color: rgba(255, 0, 0, 0.5);
   color: rgb(75, 0, 0);
+}
+
+/* CONFIRM REMOVE DIALOG */
+dialog.remove-dialog {
+  text-align: center;
+}
+
+.remove-dialog p {
+  font-size: 1.2rem;
+}
+
+.remove-dialog .remove-actions {
+  margin-top: 20px;
 }

@@ -1,6 +1,9 @@
 // Array of objects containing book instances
 const library = [];
 
+// Index used to locate book to be removed
+let indexToRemove = 0;
+
 const booksContainer = document.querySelector(".books-container");
 const addBookButton = document.querySelector(".add-book-btn");
 const confirmButton = document.querySelector(".confirm-btn");
@@ -10,9 +13,12 @@ const authorInput = document.querySelector("#book-author");
 const numberOfPagesInput = document.querySelector("#number-of-pages");
 const hasReadSelect = document.querySelector("#has-read");
 const dialog = document.querySelector("dialog");
+const removeDialog = document.querySelector(".remove-dialog");
+const removeBtn = document.querySelector(".remove-btn");
+const cancelRemoveBtn = document.querySelector(".cancel-remove-btn");
 const form = document.querySelector("form");
 
-// Book constuctor
+// Book constructor
 function Book(title, author, numberOfPages, hasRead) {
   this.title = title;
   this.author = author;
@@ -42,6 +48,14 @@ function addBookToLibrary(title, author, numberOfPages, hasRead) {
 function removeBookFromLibrary(index) {
   library.splice(index, 1);
   displayBooks();
+}
+
+// Updates index variable and opens dialog to confirm removal
+function confirmDelete(index) {
+  // Set variable to current index
+  indexToRemove = index;
+
+  removeDialog.showModal();
 }
 
 // Clears Inputs
@@ -79,6 +93,17 @@ cancelButton.addEventListener("click", () => {
   clearInputs();
   dialog.close();
 });
+
+// Removes book from library and closes dialog
+removeBtn.addEventListener("click", () => {
+  removeBookFromLibrary(indexToRemove);
+  removeDialog.close();
+})
+
+// Closes remove dialog on cancel
+cancelRemoveBtn.addEventListener("click", () => {
+  removeDialog.close();
+})
 
 // Displays books
 function displayBooks() {
@@ -142,7 +167,7 @@ function displayBooks() {
     removeBookBtn.textContent = "Remove book";
     removeBookBtn.classList.add("remove-book-btn");
     actionsContainer.appendChild(removeBookBtn);
-    removeBookBtn.addEventListener("click", () => removeBookFromLibrary(index));
+    removeBookBtn.addEventListener("click", () => confirmDelete(index));
   });
 }
 
