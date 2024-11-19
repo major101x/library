@@ -19,23 +19,24 @@ const cancelRemoveBtn = document.querySelector(".cancel-remove-btn");
 const form = document.querySelector("form");
 
 // Book constructor
-function Book(title, author, numberOfPages, hasRead) {
-  this.title = title;
-  this.author = author;
-  this.numberOfPages = numberOfPages;
-  this.hasRead = hasRead;
-}
-
-// Book method to change read state and re-render books
-Book.prototype.changeHasReadStatus = function (book) {
-  // Switches read state
-  if (book.hasRead === "Not read") {
-    book.hasRead = "Read";
-  } else {
-    book.hasRead = "Not read";
+class Book {
+  constructor(title, author, numberOfPages, hasRead) {
+    this.title = title;
+    this.author = author;
+    this.numberOfPages = numberOfPages;
+    this.hasRead = hasRead;
   }
-  displayBooks();
-};
+  // Book method to change read state and re-render books
+  changeHasReadStatus(book) {
+    // Switches read state
+    if (book.hasRead === "Not read") {
+      book.hasRead = "Read";
+    } else {
+      book.hasRead = "Not read";
+    }
+    displayBooks();
+  }
+}
 
 // Adds book to library
 function addBookToLibrary(title, author, numberOfPages, hasRead) {
@@ -98,12 +99,12 @@ cancelButton.addEventListener("click", () => {
 removeBtn.addEventListener("click", () => {
   removeBookFromLibrary(indexToRemove);
   removeDialog.close();
-})
+});
 
 // Closes remove dialog on cancel
 cancelRemoveBtn.addEventListener("click", () => {
   removeDialog.close();
-})
+});
 
 // Displays books
 function displayBooks() {
