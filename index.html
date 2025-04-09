@@ -53,14 +53,17 @@
           <div class="form-row">
             <label for="book-title">Book Title</label>
             <input type="text" id="book-title" required />
+            <span class="error title-error"></span>
           </div>
           <div class="form-row">
             <label for="book-author">Author</label>
             <input type="text" id="book-author" required />
+            <span class="error author-error"></span>
           </div>
           <div class="form-row">
             <label for="number-of-pages">Number of pages</label>
             <input type="number" id="number-of-pages" max="21450" required />
+            <span class="error number-of-pages-error">sss</span>
           </div>
 
           <div class="form-row">
@@ -70,9 +73,10 @@
               <option value="Want to read">Want to read</option>
               <option value="Read">Read</option>
             </select>
+            <span class="error has-read-error"></span>
           </div>
           <div class="actions">
-            <button class="confirm-btn">Confirm</button>
+            <button class="confirm-btn" type="button">Confirm</button>
             <button type="button" class="cancel-btn">Cancel</button>
           </div>
         </form>
@@ -93,7 +97,6 @@
         <p>Copyright &copy; 2024 Olayiwola Aroyeun</p>
       </footer>
     </div>
-
 
     <!-- External JavaScript -->
     <script src="script.js"></script>

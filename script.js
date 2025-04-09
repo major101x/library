@@ -17,6 +17,10 @@ const removeDialog = document.querySelector(".remove-dialog");
 const removeBtn = document.querySelector(".remove-btn");
 const cancelRemoveBtn = document.querySelector(".cancel-remove-btn");
 const form = document.querySelector("form");
+const titleError = document.querySelector(".title-error");
+const authorError = document.querySelector(".author-error");
+const numberOfPagesError = document.querySelector(".number-of-pages-error");
+const hasReadError = document.querySelector(".has-read-error");
 
 // Book constructor
 function Book(title, author, numberOfPages, hasRead) {
@@ -66,16 +70,66 @@ function clearInputs() {
   hasReadSelect.value = "";
 }
 
+// Removes errors from inputs
+function removeErrors() {
+  titleError.style.display = "none";
+  authorError.style.display = "none";
+  numberOfPagesError.style.display = "none";
+  hasReadError.style.display = "none";
+}
+
+// Shows errors if inputs are invalid
+function showErrors() {
+  if (titleInput.validity.valueMissing) {
+    titleError.style.display = "block";
+    titleError.textContent = "Please enter a title";
+  }
+  if (authorInput.validity.valueMissing) {
+    authorError.style.display = "block";
+    authorError.textContent = "Please enter an author";
+  }
+  if (numberOfPagesInput.validity.valueMissing) {
+    numberOfPagesError.style.display = "block";
+    numberOfPagesError.textContent = "Please enter a number of pages";
+  }
+  if (hasReadSelect.value === "") {
+    hasReadError.style.display = "block";
+    hasReadError.textContent = "Please select a read state";
+  }
+}
+
 // Shows modal on click
 addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
 
+// Checks inputs on focus out
+function checkInputsOnfocusout() {
+  const inputs = [
+    { input: titleInput, error: titleError },
+    { input: authorInput, error: authorError },
+    { input: numberOfPagesInput, error: numberOfPagesError },
+    { input: hasReadSelect, error: hasReadError },
+  ];
+
+  inputs.forEach(({ input, error }) => {
+    input.addEventListener("focusout", () => {
+      if (input.validity.valid) {
+        error.style.display = "none";
+      } else {
+        error.style.display = "block";
+      }
+    });
+  });
+}
+checkInputsOnfocusout();
+
 // Adds book to library and clears inputs if form is valid
-confirmButton.addEventListener("click", () => {
+confirmButton.addEventListener("click", (event) => {
   // Checks validity of form before proceeding
   if (!form.checkValidity()) {
-    return;
+    showErrors();
+    event.preventDefault();
   } else {
     const bookTitle = titleInput.value;
     const bookAuthor = authorInput.value;
@@ -98,12 +152,12 @@ cancelButton.addEventListener("click", () => {
 removeBtn.addEventListener("click", () => {
   removeBookFromLibrary(indexToRemove);
   removeDialog.close();
-})
+});
 
 // Closes remove dialog on cancel
 cancelRemoveBtn.addEventListener("click", () => {
   removeDialog.close();
-})
+});
 
 // Displays books
 function displayBooks() {

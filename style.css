@@ -253,6 +253,20 @@ form .form-row {
   border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
+.form-row input:required {
+  border: 2px solid var(--red-background);
+}
+
+.form-row input:focus:required {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.form-row .error {
+  display: none;
+  text-align: left;
+  color: red;
+}
+
 .form-row select {
   padding: 4px 8px;
   font-size: 1.1rem;
